@@ -1,41 +1,38 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Container,
-  TextField,
-  CssBaseline,
-  Typography
-} from "@mui/material";
-import user from "../auth/User";
-import {withRouter} from "react-router-dom";
+import {Box, Button, Container, CssBaseline, TextField, Typography} from "@mui/material";
 import MainLayout from "./layouts/MainLayout";
 
-function Login({history, location}) {
-
+export default function Register() {
   const handleSubmit = (event) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget);
 
-    const loginCredentials = {
+    const registerData = {
+      name: formData.get('name'),
       email: formData.get('email'),
-      password: formData.get('password')
-    }
-
-    function authenticatedCallback() {
-      history.replace('/app/dashboard')
+      password: formData.get('password'),
+      password_confirmation: formData.get('password_confirmation')
     }
 
     axios.get('/sanctum/csrf-cookie').then(response => {
-      window.axios.post('/api/login', loginCredentials).then((response) => {
-        user.authenticated(response.data, authenticatedCallback);
+      window.axios.post('/api/register', registerData).then((response) => {
+        console.log(response);
       })
     });
   }
-
   return (
-      <MainLayout title={"Login"}>
+      <MainLayout title={"Register"}>
+        <CssBaseline/>
         <Box component={"form"} onSubmit={handleSubmit}>
+          <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              autoFocus
+          />
           <TextField
               margin="normal"
               required
@@ -56,6 +53,16 @@ function Login({history, location}) {
               id="password"
               autoComplete="current-password"
           />
+          <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password_confirmation"
+              label="Confirm password"
+              type="password"
+              id="password_confirmation"
+              autoComplete="current-password"
+          />
           <Button
               fullWidth
               variant={"outlined"}
@@ -68,5 +75,3 @@ function Login({history, location}) {
       </MainLayout>
   )
 }
-
-export default withRouter(Login)

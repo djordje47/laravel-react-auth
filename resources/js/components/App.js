@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, NavLink, Route} from "react-router-dom";
 import {ProtectedRoute} from './ProtectedRoute/ProtectedRoute';
 
 import Login from "./Login";
 import Dashboard from "./Dashboard";
+import Register from "./Register";
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
         <BrowserRouter>
           <Route path={'/app/login'}>
             <Login/>
+          </Route>
+          <Route path={'/app/register'}>
+            <Register/>
           </Route>
           <ProtectedRoute
               exact path={'/app/dashboard'}
