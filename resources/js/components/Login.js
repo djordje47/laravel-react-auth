@@ -1,12 +1,4 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Container,
-  TextField,
-  CssBaseline,
-  Typography
-} from "@mui/material";
 import user from "../auth/User";
 import {withRouter} from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";

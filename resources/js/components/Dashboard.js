@@ -6,13 +6,11 @@ import MainLayout from "./layouts/MainLayout";
 function Dashboard() {
   return (
       <MainLayout title={"Dashboard"}>
-        <Grid container justifyContent={"center"}>
-          <Grid item md={12}>
-            <Typography variant={"h5"}>
-              Hello {User.name}, you're logged in!
-            </Typography>
-          </Grid>
-        </Grid>
+        <div className="flex flex-row flex-wrap">
+          <div className="flex flex-col basis-full">
+            Hello {User.name}, you're logged in!
+          </div>
+        </div>
       </MainLayout>
   )
 }
