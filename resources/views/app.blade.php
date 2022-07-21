@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, width=device-width"/>
   <title>Laravel & React</title>
-
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
-<div id="app"></div>
+<div id="app" class="h-screen"></div>
 <script src="{{asset('js/app.js')}}"></script>
 </body>
 

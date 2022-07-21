@@ -1,13 +1,4 @@
 import React from "react";
-import {
-  AppBar,
-  Paper,
-  Container,
-  Box,
-  CssBaseline,
-  Toolbar,
-  Typography, Button
-} from "@mui/material";
 import LogoutButton from "../LogoutButton";
 import {Link} from "react-router-dom";
 import User from "../../auth/User";
@@ -17,47 +8,29 @@ function MainLayout({children, title}) {
   let loginBtn = false;
   let logoutBtn = false;
   if (!User.isLoggedIn()) {
-    registerBtn = <Link to="/app/register" color={'#fff'}>Register</Link>;
-    loginBtn = <Link to="/app/login" color={'#fff'}>Login</Link>;
+    registerBtn = <Link to="/app/register" className='no-underline mx-2 hover:underline'>Register</Link>;
+    loginBtn = <Link to="/app/login" className='no-underline mx-2 hover:underline'>Login</Link>;
   } else {
-
+    logoutBtn = <LogoutButton/>;
   }
   return (
-      <React.Fragment>
-        <CssBaseline/>
-        <AppBar position={"static"}>
-          <Toolbar>
-            <Typography
-                variant={"h6"}
-                component={"div"}
-                sx={{flexGrow: 1}}>
-              {title}
-            </Typography>
+      <div className="container mx-auto h-screen">
+        <div className="flex flex-row">
+          <div className="basis-3/4">
+            <h1>{title}</h1>
+          </div>
+          <div className="flex basis-1/4 justify-center">
             {registerBtn}
             {loginBtn}
-            <LogoutButton/>
-          </Toolbar>
-        </AppBar>
-        <Container>
-          <Box
-              sx={{
-                marginTop: 6,
-                display: 'flex',
-                width: '100%',
-                height: '100%',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-          >
-            <Paper sx={{
-              width: '60%',
-              padding: 2
-            }}>
-              {children}
-            </Paper>
-          </Box>
-        </Container>
-      </React.Fragment>
+            {logoutBtn}
+          </div>
+        </div>
+        <div className="flex flex-row justify-center ">
+          <div className="basis-1/2">
+            {children}
+          </div>
+        </div>
+      </div>
   )
 }
 
